@@ -1,41 +1,53 @@
 # =============================================================================
-# NEWSLETTER ARCHIVE (mlsysbook.ai/newsletter/)
+# LANDING PAGE WEBSITE (root of mlsysbook.ai)
 # =============================================================================
-# Renders sent newsletters as a browsable listing page.
-# Build from book/quarto:
-#   quarto render ../../newsletter/index.qmd
-# Deploy _build/html-newsletter/ to https://mlsysbook.ai/newsletter/
+# Ecosystem hub — links to all subsites (book, slides, kits, labs, etc.)
+# Build:  cd landing && quarto render
+# Output: landing/_build/  → deploy to https://mlsysbook.ai/
 # =============================================================================
 
 project:
   type: website
-  output-dir: ../book/quarto/_build/html-newsletter
-  resources: ..
+  output-dir: _build
 
 website:
-  title: "Newsletter - Machine Learning Systems"
-  description: "Updates, insights, and progress from the Machine Learning Systems textbook project."
-  site-url: https://mlsysbook.ai/newsletter/
+  title: "Machine Learning Systems"
+  description: "Two-volume textbook on ML systems: foundations and single-machine deployment (Vol I), distributed systems and scale (Vol II). Free to read online."
+  site-url: https://mlsysbook.ai/
+
+  open-graph:
+    locale: en_US
+    site-name: "Machine Learning Systems"
+    image: https://mlsysbook.ai/vol1/assets/images/covers/cover-hardcover-book-vol1.png
+    image-width: 1200
+    image-height: 630
+  twitter-card:
+    card-style: summary_large_image
+    image: https://mlsysbook.ai/vol1/assets/images/covers/cover-hardcover-book-vol1.png
 
   page-navigation: false
-  back-to-top-navigation: true
+  back-to-top-navigation: false
 
   # Shared navbar from navbar-common.yml (via metadata-files).
   navbar:
     logo: https://mlsysbook.ai/vol1/assets/images/icons/favicon.png
     title: "Machine Learning Systems"
 
+  # No sidebar on landing (single-page hub)
   sidebar: []
 
   page-footer:
     left: |
-      &copy; 2024-2026 Harvard University. Licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC-BY-NC-SA 4.0</a>
+      © 2024-2026 Harvard University. Licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC-BY-NC-SA 4.0</a>
     center: |
-      <a href="https://mlsysbook.ai/vol1/">Volume I</a> &middot; <a href="https://mlsysbook.ai/vol2/">Volume II</a> &middot; <a href="https://mlsysbook.ai/newsletter/">Newsletter</a>
+      <a href="vol1/">Volume I</a> · <a href="vol2/">Volume II</a>
     right:
       - icon: github
         href: https://github.com/harvard-edge/cs249r_book
         aria-label: "View source on GitHub"
+      - icon: star
+        href: https://github.com/harvard-edge/cs249r_book
+        aria-label: "Star this repository"
     background: light
     border: true
 
@@ -54,7 +66,7 @@ format:
         - ../book/quarto/assets/styles/style-vol1.scss
         - ../book/quarto/assets/styles/dark-mode-vol1.scss
     respect-user-color-scheme: true
-    css: newsletter.css
+    css: landing.css
     include-in-header:
       text: |
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">

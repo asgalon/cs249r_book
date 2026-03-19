@@ -23,7 +23,7 @@ format:
     <p class="mls-hero-intro">A rigorous, principles-first treatment of how ML systems<br/>are built, optimized, and deployed—from a single<br/>machine to fleet-scale infrastructure.</p>
 
     <div class="mls-meta">
-      <p class="mls-links"><a href="https://mlsysbook.ai/tinytorch/">TinyTorch</a> · <a href="https://mlsysbook.ai/mlsysim/">MLSys·im</a> · <a href="https://mlsysbook.ai/labs/">Labs</a> · <a href="https://mlsysbook.ai/kits/">Hardware Kits</a> · <a href="https://mlsysbook.ai/slides/">Slides</a> · <a href="https://github.com/harvard-edge/cs249r_book/tree/dev/interviews" target="_blank" rel="noopener">Interviews</a></p>
+      <p class="mls-links"><a href="https://mlsysbook.ai/tinytorch/">TinyTorch</a> · <a href="https://mlsysbook.ai/mlsysim/">MLSys·im</a> · <a href="https://mlsysbook.ai/labs/">Labs</a> · <a href="https://mlsysbook.ai/kits/">Hardware Kits</a> · <a href="https://mlsysbook.ai/slides/">Slides</a> · <a href="https://mlsysbook.ai/instructors/">Instructors</a> · <a href="https://github.com/harvard-edge/cs249r_book/tree/dev/interviews" target="_blank" rel="noopener">Interviews</a></p>
       <p class="mls-links"><a href="https://github.com/harvard-edge/cs249r_book" target="_blank" rel="noopener">GitHub</a> · <a href="https://opencollective.com/mlsysbook" target="_blank" rel="noopener">Open Collective</a></p>
     </div>
   </div>
@@ -79,7 +79,7 @@ format:
   </div>
 
   <div class="mls-landing-right">
-    <div class="mls-feature-card">
+    <div class="mls-feature-card mls-card-clickable" data-href="https://mlsysbook.ai/tinytorch/">
       <div class="css-terminal-wrapper">
         <div class="css-terminal">
           <div class="css-terminal-header">
@@ -119,7 +119,7 @@ format:
   </div>
 
   <div class="mls-landing-right">
-    <div class="mls-feature-card">
+    <div class="mls-feature-card mls-card-clickable" data-href="https://mlsysbook.ai/mlsysim/">
       <div class="sim-panel">
         <!-- CLI command line — cycles through 3 batch sizes -->
         <div class="sim-cli">
@@ -210,7 +210,7 @@ format:
   </div>
 
   <div class="mls-landing-right">
-    <div class="mls-feature-card">
+    <div class="mls-feature-card mls-card-clickable" data-href="https://mlsysbook.ai/labs/">
       <div class="lab-card">
         <div class="lab-header"><span>Lab 15 &middot; Sustainable AI</span><span class="lab-badge">Explore</span></div>
         <div class="lab-body">
@@ -325,9 +325,148 @@ format:
   </div>
 
   <div class="mls-landing-right">
-    <div class="mls-feature-card">
+    <div class="mls-feature-card mls-card-clickable" data-href="https://mlsysbook.ai/kits/">
       <img src="assets/nicla-vision-front.jpeg" alt="Nicla Vision" class="mls-feature-image" style="max-width: 200px; margin-bottom: 2rem;" />
       <p class="mls-feature-desc">Microcontrollers, single-board computers, and specialized accelerators.</p>
+    </div>
+  </div>
+</div>
+
+</section>
+
+<!-- Section 6: Lecture Slides (TEACH) -->
+<section class="mls-section">
+<div class="mls-landing-grid">
+  <div class="mls-landing-left">
+    <p class="mls-hero-eyebrow">LECTURE SLIDES</p>
+    <h1 class="mls-hero-title">Teach it.<br/>Ready to go.</h1>
+    <p class="mls-hero-tagline">35 Beamer decks.<br/>~38 hours of content.</p>
+    <p class="mls-hero-intro">Complete lecture slide decks with speaker notes, active learning exercises, and 266 original SVG diagrams. Available in Beamer, PDF, and PowerPoint formats.</p>
+
+    <div class="mls-meta">
+      <p class="mls-links"><a href="https://mlsysbook.ai/slides/">Browse Slides &rarr;</a></p>
+    </div>
+  </div>
+
+  <div class="mls-landing-right">
+    <div class="mls-feature-card mls-card-clickable" data-href="https://mlsysbook.ai/slides/">
+      <div class="beamer-frame">
+        <div class="beamer-topbar">
+          <span>Intro</span><span>Systems</span><span>DNN</span><span class="active">Training</span><span>Accel</span><span>Deploy</span><span>Ethics</span>
+        </div>
+        <div class="beamer-body">
+          <div class="beamer-title">The Iron Law of ML Systems</div>
+          <div class="beamer-eq">T<sub>total</sub> = D<sub>vol</sub>/BW + O/(R<sub>peak</sub>&middot;&eta;) + L<sub>lat</sub></div>
+          <div class="beamer-bullets">
+            &bull; <strong>Data Term</strong> &mdash; memory bandwidth is the binding constraint<br>
+            &bull; <strong>Compute Term</strong> &mdash; utilization &eta; rarely exceeds 0.7<br>
+            &bull; <strong>Latency Term</strong> &mdash; irreducible orchestration overhead
+          </div>
+        </div>
+        <div class="beamer-footer">
+          <span>Harvard University &middot; ML Systems</span>
+          <span class="beamer-page">12 / 38</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- Section 7: Instructor Hub (ADOPT) -->
+<section class="mls-section">
+<div class="mls-landing-grid">
+  <div class="mls-landing-left">
+    <p class="mls-hero-eyebrow">INSTRUCTOR HUB</p>
+    <h1 class="mls-hero-title">Adopt it.<br/>Course in a box.</h1>
+    <p class="mls-hero-tagline">Two-semester curriculum.<br/>Everything you need.</p>
+    <p class="mls-hero-intro">Syllabi, assessment rubrics, pedagogy guides, and TA resources for teaching AI Engineering. Designed for adoption at any university.</p>
+
+    <div class="mls-meta">
+      <p class="mls-links"><a href="https://mlsysbook.ai/instructors/">The Blueprint &rarr;</a></p>
+    </div>
+  </div>
+
+  <div class="mls-landing-right">
+    <div class="mls-feature-card mls-card-clickable" data-href="https://mlsysbook.ai/instructors/">
+      <div class="bp-sheet">
+        <div class="bp-grid-overlay"></div>
+        <div class="bp-title-block">
+          <div class="bp-title-text">The Blueprint &mdash; Course Architecture</div>
+          <div class="bp-title-sub">ML Systems &middot; Two-Semester Curriculum</div>
+        </div>
+        <div class="bp-layout">
+          <div class="bp-module">
+            <div class="bp-module-label">📖 Semester 1: Foundations</div>
+            <div class="bp-module-items">16 weeks &middot; Vol I<br>Single-machine systems<br>8 assignments &middot; 2 exams</div>
+          </div>
+          <div class="bp-module">
+            <div class="bp-module-label">🌐 Semester 2: At Scale</div>
+            <div class="bp-module-items">16 weeks &middot; Vol II<br>Distributed systems<br>6 assignments &middot; capstone</div>
+          </div>
+          <div class="bp-module">
+            <div class="bp-module-label">📊 Assessment</div>
+            <div class="bp-module-items">Rubrics &middot; Grading<br>Peer review templates<br>Project milestones</div>
+          </div>
+          <div class="bp-module">
+            <div class="bp-module-label">🎓 Teaching Staff</div>
+            <div class="bp-module-items">Pedagogy guide<br>TA handbook<br>Office hours playbook</div>
+          </div>
+        </div>
+        <div class="bp-stamp">
+          <div class="bp-stamp-icon">📦</div>
+          <div class="bp-stamp-text">Ready<br>to Ship</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- Section 8: Interview Prep (PRACTICE) -->
+<section class="mls-section">
+<div class="mls-landing-grid">
+  <div class="mls-landing-left">
+    <p class="mls-hero-eyebrow">INTERVIEW PREP</p>
+    <h1 class="mls-hero-title">Ace the<br/>interview.</h1>
+    <p class="mls-hero-tagline">Systems questions.<br/>Architect-level answers.</p>
+    <p class="mls-hero-intro">Study guides, topic maps, and practice questions organized by deployment domain: cloud, edge, mobile, and TinyML. Built from real interview patterns.</p>
+
+    <div class="mls-meta">
+      <p class="mls-links"><a href="https://github.com/harvard-edge/cs249r_book/tree/dev/interviews" target="_blank" rel="noopener">Start Practicing &rarr;</a></p>
+    </div>
+  </div>
+
+  <div class="mls-landing-right">
+    <div class="mls-feature-card mls-card-clickable" data-href="https://github.com/harvard-edge/cs249r_book/tree/dev/interviews">
+      <div class="iprep-stack">
+        <div class="iprep-card iprep-back">
+          <span class="iprep-domain" style="background:#fce4ec; color:#c44;">TinyML</span>
+        </div>
+        <div class="iprep-card iprep-mid">
+          <span class="iprep-domain" style="background:#e8f5e9; color:#2d7a2d;">Edge</span>
+          <div class="iprep-q">How does quantization affect inference latency on edge accelerators?</div>
+        </div>
+        <div class="iprep-card iprep-front">
+          <span class="iprep-domain" style="background:#e3f2fd; color:#4a90c4;">Cloud</span>
+          <div class="iprep-q">A 70B parameter model needs to serve 1,000 req/s. Walk through your hardware selection and parallelism strategy.</div>
+          <div class="iprep-meta">
+            <span class="iprep-rubric">The Architects Rubric</span>
+            <span>L5 &middot; Systems Design</span>
+          </div>
+          <div class="iprep-bars">
+            <div class="iprep-bar"><span class="iprep-bar-label">Hardware</span><div class="iprep-bar-track"><div class="iprep-bar-fill" style="width:85%; background:#4a90c4;"></div></div></div>
+            <div class="iprep-bar"><span class="iprep-bar-label">Parallelism</span><div class="iprep-bar-track"><div class="iprep-bar-fill" style="width:90%; background:#3d9e5a;"></div></div></div>
+            <div class="iprep-bar"><span class="iprep-bar-label">Trade-offs</span><div class="iprep-bar-track"><div class="iprep-bar-fill" style="width:75%; background:#c87b2a;"></div></div></div>
+          </div>
+        </div>
+      </div>
+      <div class="iprep-domains">
+        <span class="iprep-tag" style="background:#e3f2fd; color:#4a90c4;">Cloud</span>
+        <span class="iprep-tag" style="background:#e8f5e9; color:#2d7a2d;">Edge</span>
+        <span class="iprep-tag" style="background:#fff3e0; color:#c87b2a;">Mobile</span>
+        <span class="iprep-tag" style="background:#fce4ec; color:#c44;">TinyML</span>
+      </div>
     </div>
   </div>
 </div>
@@ -340,6 +479,11 @@ format:
 </div>
 
 <script src="neural-bg.js"></script>
+<script>
+document.querySelectorAll('.mls-card-clickable[data-href]').forEach(card => {
+  card.addEventListener('click', () => window.location.href = card.dataset.href);
+});
+</script>
 ```
 
 :::

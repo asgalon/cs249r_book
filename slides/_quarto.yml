@@ -26,46 +26,12 @@ website:
   back-to-top-navigation: true
   bread-crumbs: true
 
-  # Navbar — matches ecosystem pattern (see instructors/, labs/, kits/)
+  # Shared navbar from navbar-common.yml; site-local dropdown merged by Quarto.
   navbar:
-    background: light
     logo: assets/images/logo.png
     search: true
-    pinned: true
-    collapse: true
-    collapse-below: "lg"
     title: "Machine Learning Systems"
     left:
-      - text: "Textbook"
-        menu:
-          - icon: house
-            text: "Home"
-            href: https://mlsysbook.ai/
-          - text: "---"
-          - icon: journal
-            text: "Volume I: Foundations"
-            href: https://mlsysbook.ai/vol1/
-          - icon: journal
-            text: "Volume II: At Scale"
-            href: https://mlsysbook.ai/vol2/
-          - text: "---"
-          - icon: fire
-            text: "TinyTorch"
-            href: https://mlsysbook.ai/tinytorch/
-          - icon: cpu
-            text: "Hardware Kits"
-            href: https://mlsysbook.ai/kits/
-          - icon: calculator
-            text: "MLSys·IM"
-            href: https://mlsysbook.ai/mlsysim/
-          - text: "---"
-          - icon: lightbulb
-            text: "Labs"
-            href: https://mlsysbook.ai/labs/
-          - icon: mortarboard
-            text: "Interview Prep"
-            href: https://github.com/harvard-edge/cs249r_book/tree/dev/interviews
-            target: _blank
       - text: "Lecture Slides"
         menu:
           - icon: easel
@@ -82,19 +48,6 @@ website:
           - icon: mortarboard
             text: "Teaching Guide"
             href: teaching.qmd
-    right:
-      - icon: star
-        text: "Star"
-        href: https://github.com/harvard-edge/cs249r_book#support-this-work
-        target: _blank
-      - icon: heart
-        text: "Support"
-        href: https://opencollective.com/mlsysbook
-        target: _blank
-      - icon: github
-        text: "GitHub"
-        href: https://github.com/harvard-edge/cs249r_book
-        target: _blank
 
   sidebar: false
 
@@ -109,6 +62,9 @@ website:
         aria-label: "View source on GitHub"
     background: light
     border: true
+
+metadata-files:
+  - ../book/quarto/config/shared/html/navbar-common.yml
 
 format:
   html:
