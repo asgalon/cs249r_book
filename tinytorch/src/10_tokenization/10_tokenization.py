@@ -314,6 +314,8 @@ class Tokenizer:
     - decode(): list of token IDs → text
     """
 
+    TOK_UNKNOWN = '<UNK>'
+
     def encode(self, text: str) -> List[int]:
         """
         Convert text to a list of token IDs.
@@ -461,16 +463,18 @@ class CharTokenizer(Tokenizer):
         4  # 3 chars + 1 unknown token
         """
         ### BEGIN SOLUTION
+        # register dict names
+        self.char_to_id = None
+        self.id_to_char = None
+
         if vocab is None:
             vocab = []
 
         # Add special unknown token
-        self.vocab = ['<UNK>'] + vocab
-        self.vocab_size = len(self.vocab)
+        self.vocab = [Tokenizer.TOK_UNKNOWN]
+        self.vocab_size = 1
 
-        # Create bidirectional mappings
-        self.char_to_id = {char: idx for idx, char in enumerate(self.vocab)}
-        self.id_to_char = {idx: char for idx, char in enumerate(self.vocab)}
+        self.append_vocab(vocab)
 
         # Store unknown token ID
         self.unk_id = 0
@@ -502,13 +506,18 @@ class CharTokenizer(Tokenizer):
         unique_chars = sorted(all_chars)
 
         # Rebuild vocabulary with <UNK> token first
-        self.vocab = ['<UNK>'] + unique_chars
-        self.vocab_size = len(self.vocab)
-
-        # Rebuild mappings
-        self.char_to_id = {char: idx for idx, char in enumerate(self.vocab)}
-        self.id_to_char = {idx: char for idx, char in enumerate(self.vocab)}
+        self.append_vocab(unique_chars)
         ### END SOLUTION
+
+    def append_vocab(self, vocab: List[str]):
+        # Add all unique items to vocabulary that are not already in there, maintaining the list order
+        for item in vocab:
+            if item not in self.vocab:
+                self.vocab += item
+        self.vocab_size = len(self.vocab)
+        # Rebuild mappings
+        self.id_to_char = dict(enumerate(self.vocab))
+        self.char_to_id = {char: idx for idx, char in self.id_to_char.items()}
 
     def encode(self, text: str) -> List[int]:
         """
@@ -553,7 +562,7 @@ class CharTokenizer(Tokenizer):
         chars = []
         for token_id in tokens:
             # Use unknown token for invalid IDs
-            char = self.id_to_char.get(token_id, '<UNK>')
+            char = self.id_to_char.get(token_id, Tokenizer.TOK_UNKNOWN)
             chars.append(char)
         return ''.join(chars)
         ### END SOLUTION
@@ -580,7 +589,7 @@ def test_unit_char_tokenizer():
 
     # Test vocabulary setup
     assert tokenizer.vocab_size == 9  # 8 chars + UNK
-    assert tokenizer.vocab[0] == '<UNK>'
+    assert tokenizer.vocab[0] == Tokenizer.TOK_UNKNOWN
     assert 'h' in tokenizer.char_to_id
 
     # Test encoding
@@ -599,6 +608,15 @@ def test_unit_char_tokenizer():
 
     # Test vocabulary building
     corpus = ["hello world", "test text"]
+    tokenizer.build_vocab(corpus)
+    assert 't' in tokenizer.char_to_id
+    assert 'x' in tokenizer.char_to_id
+
+    # Test initialization with optional vocabulary and then appending text corpus.
+    vocab = ['h', 'e', 'l', 'o', ' ', 'w', 'r', 'd']
+    tokenizer = CharTokenizer(vocab)
+    # Now, "hello world" does not come from the corpus, but from the init vocab
+    corpus = ["test text"]
     tokenizer.build_vocab(corpus)
     assert 't' in tokenizer.char_to_id
     assert 'x' in tokenizer.char_to_id
@@ -943,6 +961,8 @@ class BPETokenizer(Tokenizer):
     4. Repeating until desired vocabulary size
     """
 
+    TOK_EOW = '</w>'
+
     def __init__(self, vocab_size: int = 1000):
         """
         Initialize BPE tokenizer.
@@ -991,7 +1011,7 @@ class BPETokenizer(Tokenizer):
             return []
 
         tokens = list(word)
-        tokens[-1] += '</w>'  # Mark end of word
+        tokens[-1] += BPETokenizer.TOK_EOW  # Mark end of word
         return tokens
         ### END SOLUTION
 
@@ -1063,8 +1083,8 @@ class BPETokenizer(Tokenizer):
             vocab.update(tokens)
 
         self.vocab = sorted(vocab)
-        if '<UNK>' not in vocab:
-            self.vocab = ['<UNK>'] + self.vocab
+        if Tokenizer.TOK_UNKNOWN not in vocab:
+            self.vocab = [Tokenizer.TOK_UNKNOWN] + self.vocab
 
         # Greedy merge loop: count pairs, merge best, repeat
         self.merges = []
@@ -1085,8 +1105,9 @@ class BPETokenizer(Tokenizer):
     def _build_mappings(self):
         """Build token-to-ID and ID-to-token mappings."""
         ### BEGIN SOLUTION
-        self.token_to_id = {token: idx for idx, token in enumerate(self.vocab)}
-        self.id_to_token = {idx: token for idx, token in enumerate(self.vocab)}
+        self.id_to_token = dict(enumerate(self.vocab))
+        self.token_to_id = {token: idx for idx, token in self.id_to_token.items()}
+
         ### END SOLUTION
 
     def _apply_merges(self, tokens: List[str]) -> List[str]:
@@ -1192,7 +1213,7 @@ class BPETokenizer(Tokenizer):
         "hello world"  # Reconstructed text
 
         HINTS:
-        - Use id_to_token dictionary with '<UNK>' as default
+        - Use id_to_token dictionary with TOK_UNKNOWN as default
         - Join all tokens into single string with ''.join()
         - Replace '</w>' markers with spaces for word boundaries
         """
@@ -1203,14 +1224,14 @@ class BPETokenizer(Tokenizer):
         # Convert IDs to tokens
         token_strings = []
         for token_id in tokens:
-            token = self.id_to_token.get(token_id, '<UNK>')
+            token = self.id_to_token.get(token_id, Tokenizer.TOK_UNKNOWN)
             token_strings.append(token)
 
         # Join and clean up
         text = ''.join(token_strings)
 
         # Replace end-of-word markers with spaces
-        text = text.replace('</w>', ' ')
+        text = text.replace(BPETokenizer.TOK_EOW, ' ')
 
         # Clean up extra spaces
         text = ' '.join(text.split())
@@ -1241,11 +1262,11 @@ def test_unit_bpe_tokenizer():
 
     # Check that vocabulary was built
     assert len(tokenizer.vocab) > 0
-    assert '<UNK>' in tokenizer.vocab
+    assert Tokenizer.TOK_UNKNOWN in tokenizer.vocab
 
     # Test helper functions
     word_tokens = tokenizer._get_word_tokens("test")
-    assert word_tokens[-1].endswith('</w>'), "Should have end-of-word marker"
+    assert word_tokens[-1].endswith(BPETokenizer.TOK_EOW), "Should have end-of-word marker"
 
     pairs = tokenizer._get_pairs(['h', 'e', 'l', 'l', 'o</w>'])
     assert ('h', 'e') in pairs
