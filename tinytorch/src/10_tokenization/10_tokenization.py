@@ -609,6 +609,7 @@ def test_unit_char_tokenizer():
     # Test vocabulary building
     corpus = ["hello world", "test text"]
     tokenizer.build_vocab(corpus)
+    assert 'h' in tokenizer.char_to_id
     assert 't' in tokenizer.char_to_id
     assert 'x' in tokenizer.char_to_id
 
@@ -618,6 +619,8 @@ def test_unit_char_tokenizer():
     # Now, "hello world" does not come from the corpus, but from the init vocab
     corpus = ["test text"]
     tokenizer.build_vocab(corpus)
+    assert 'h' in tokenizer.char_to_id
+    assert 'e' in tokenizer.char_to_id
     assert 't' in tokenizer.char_to_id
     assert 'x' in tokenizer.char_to_id
 
